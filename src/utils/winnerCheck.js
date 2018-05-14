@@ -18,6 +18,19 @@ function calculateWinner(squares) {
   return null;
 }
 
+function calculateDraw(squares) {
+  if (!calculateWinner(squares)) {
+    for (let i = 0; i < squares.length; i++) {
+      if (!squares[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return false;
+}
+
 module.exports = {
-  calculateWinner
+  calculateWinner,
+  calculateDraw
 };

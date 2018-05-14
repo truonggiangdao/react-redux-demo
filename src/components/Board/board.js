@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculateWinner } from '../../utils/winnerCheck';
+import { calculateWinner, calculateDraw } from '../../utils/winnerCheck';
 import Square from '../../components/Square';
 
 export default class Board extends React.Component {
@@ -13,7 +13,7 @@ export default class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (calculateWinner(squares) || calculateDraw(squares) || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -32,9 +32,12 @@ export default class Board extends React.Component {
 
   render() {
     const winner = calculateWinner(this.state.squares);
+    const isDraw = calculateDraw(this.state.squares);
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+    } else if (isDraw) {
+      status = 'It\'s a DRAW';
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
