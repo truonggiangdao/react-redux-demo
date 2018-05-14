@@ -1,6 +1,10 @@
 # Sample React + Redux
 > A React.js project
 
+## Run the code
+
+`npm start`
+
 ## Table of Contents
 
 1. Why React?
